@@ -26,13 +26,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 void led_set(uint8_t usb_led)
 {
-  print("set led");
-  // set direction to output
+    // set direction to output
     DDR_LED  |= (1<<BIT_LED);
     if (usb_led & (1<<USB_LED_NUM_LOCK)) {
+        print("NumLock on\n");
         // output high
         PORT_LED |= (1<<BIT_LED);
     } else {
+        print("NumLock off\n");
         // ouput low
         PORT_LED &= ~(1<<BIT_LED);
     }
