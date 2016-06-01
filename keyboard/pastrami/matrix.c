@@ -32,10 +32,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #   define DEBOUNCE	5
 #endif
 
-#define DDR_ROW DDRE
-#define PORT_ROW PORTE
-#define PIN_ROW PINE
-#define BIT_ROW 7
+#define DDR_ROW DDRF
+#define PORT_ROW PORTF
+#define PIN_ROW PINF
+#define BIT_ROW 6
 
 #define DDR_COL DDRF
 #define PORT_COL PORTF
