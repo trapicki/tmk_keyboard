@@ -37,10 +37,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PIN_ROW PINE
 #define BIT_ROW 7
 
-#define DDR_COL DDRE
-#define PORT_COL PORTE
-#define PIN_COL PINE
+#define DDR_COL DDRF
+#define PORT_COL PORTF
+#define PIN_COL PINF
 #define BIT_COL 7
+
+#define MATRIX_PRINT_HEADER_INTERVAL 20
 
 static uint8_t debouncing = DEBOUNCE;
 
@@ -53,6 +55,7 @@ static void init_cols(void);
 static void unselect_rows(void);
 static void select_row(uint8_t row);
 
+static uint8_t matrix_print_counter = 0;
 
 inline
 uint8_t matrix_rows(void)
@@ -70,7 +73,7 @@ void matrix_init(void)
 {
     debug_enable = true;
     debug_matrix = true;
-    debug_mouse = true;
+    //debug_mouse = true;
     // initialize row and col
     unselect_rows();
     init_cols();
@@ -131,15 +134,18 @@ matrix_row_t matrix_get_row(uint8_t row)
 
 void matrix_print(void)
 {
-    print("\nr/c 0123456789ABCDEF\n");
+    if (matrix_print_counter > MATRIX_PRINT_HEADER_INTERVAL) {
+        print("r/c 0123456789ABCDEF\n");
+        matrix_print_counter = 0;
+    }
     for (uint8_t row = 0; row < MATRIX_ROWS; row++) {
-        phex(row); print(": ");
-        pbin_reverse16(matrix_get_row(row));
-        print("\n");
+        matrix_print_counter++;
+        xprintf("%X: %016b\n", row, bitrev16(matrix_get_row(row)));
     }
 }
 
-uint8_t matrix_key_count(void)
+
+ uint8_t matrix_key_count(void)
 {
     uint8_t count = 0;
     for (uint8_t i = 0; i < MATRIX_ROWS; i++) {
@@ -155,13 +161,13 @@ uint8_t matrix_key_count(void)
 static void  init_cols(void)
 {
     // Input with pull-up(DDR:0, PORT:1)
-    DDR_ROW  &= ~(1<<BIT_ROW);
-    PORT_ROW |=  (1<<BIT_ROW);
+    DDR_COL  &= ~(1<<BIT_COL);
+    PORT_COL |=  (1<<BIT_COL);
 }
 
 static matrix_row_t read_cols(void)
 {
-    return (PIN_COL&(1<<BIT_COL) ? 0 : (1<<BIT_COL));
+    return (PIN_COL & (1<<BIT_COL) ? 0 : (1<<0));
 }
 
 /* Row pin configuration
