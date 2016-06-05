@@ -37,51 +37,51 @@
 #define BIT_COL_0 3
 #define PORT_COL_1 F
 #define BIT_COL_1 4
-#define PORT_COL_2 F
-#define BIT_COL_2 4
-#define PORT_COL_3 F
-#define BIT_COL_3 4
-#define PORT_COL_4 F
-#define BIT_COL_4 4
-#define PORT_COL_5 F
-#define BIT_COL_5 4
-#define PORT_COL_6 F
-#define BIT_COL_6 4
-#define PORT_COL_7 F
-#define BIT_COL_7 4
-#define PORT_COL_8 F
-#define BIT_COL_8 4
-#define PORT_COL_9 F
-#define BIT_COL_9 4
-#define PORT_COL_10 F
-#define BIT_COL_10 4
-#define PORT_COL_11 F
-#define BIT_COL_11 4
-#define PORT_COL_12 F
-#define BIT_COL_12 4
-#define PORT_COL_13 F
-#define BIT_COL_13 4
-#define PORT_COL_14 F
-#define BIT_COL_14 4
-#define PORT_COL_15 F
-#define BIT_COL_15 4
+//#define PORT_COL_2 F
+//#define BIT_COL_2 4
+//#define PORT_COL_3 F
+//#define BIT_COL_3 4
+//#define PORT_COL_4 F
+//#define BIT_COL_4 4
+//#define PORT_COL_5 F
+//#define BIT_COL_5 4
+//#define PORT_COL_6 F
+//#define BIT_COL_6 4
+//#define PORT_COL_7 F
+//#define BIT_COL_7 4
+//#define PORT_COL_8 F
+//#define BIT_COL_8 4
+//#define PORT_COL_9 F
+//#define BIT_COL_9 4
+//#define PORT_COL_10 F
+//#define BIT_COL_10 4
+//#define PORT_COL_11 F
+//#define BIT_COL_11 4
+//#define PORT_COL_12 F
+//#define BIT_COL_12 4
+//#define PORT_COL_13 F
+//#define BIT_COL_13 4
+//#define PORT_COL_14 F
+//#define BIT_COL_14 4
+//#define PORT_COL_15 F
+//#define BIT_COL_15 4
 
 #define PORT_ROW_0 F
 #define BIT_ROW_0 6
 #define PORT_ROW_1 F
 #define BIT_ROW_1 7
-#define PORT_ROW_2 F
-#define BIT_ROW_2 7
-#define PORT_ROW_3 F
-#define BIT_ROW_3 7
-#define PORT_ROW_4 F
-#define BIT_ROW_4 7
-#define PORT_ROW_5 F
-#define BIT_ROW_5 7
-#define PORT_ROW_6 F
-#define BIT_ROW_6 7
-#define PORT_ROW_7 F
-#define BIT_ROW_7 7
+//#define PORT_ROW_2 F
+//#define BIT_ROW_2 7
+//#define PORT_ROW_3 F
+//#define BIT_ROW_3 7
+//#define PORT_ROW_4 F
+//#define BIT_ROW_4 7
+//#define PORT_ROW_5 F
+//#define BIT_ROW_5 7
+//#define PORT_ROW_6 F
+//#define BIT_ROW_6 7
+//#define PORT_ROW_7 F
+//#define BIT_ROW_7 7
 ///
 
 
@@ -96,8 +96,6 @@
 #define PIN(a) CAT_INDIRECT(PIN, PORT_##a)
 #define PORT(a) CAT_INDIRECT(PORT, PORT_##a)
 
-#define MATRIX_PRINT_HEADER_INTERVAL 20
-
 static uint8_t debouncing = DEBOUNCE;
 
 /* matrix state(1:on, 0:off) */
@@ -108,8 +106,6 @@ static matrix_row_t read_cols(void);
 static void init_cols(void);
 static void unselect_rows(void);
 static void select_row(uint8_t row);
-
-static uint8_t matrix_print_counter = 0;
 
 inline
 uint8_t matrix_rows(void)
@@ -188,13 +184,9 @@ matrix_row_t matrix_get_row(uint8_t row)
 
 void matrix_print(void)
 {
-    if (matrix_print_counter > MATRIX_PRINT_HEADER_INTERVAL) {
-        print("r/c 0123456789ABCDEF\n");
-        matrix_print_counter = 0;
-    }
+    print("r/c 0123456789ABCDEF\n");
     for (uint8_t row = 0; row < MATRIX_ROWS; row++) {
-        matrix_print_counter++;
-        xprintf("%X: %016b\n", row, bitrev16(matrix_get_row(row)));
+        xprintf("%X:  %016b\n", row, bitrev16(matrix_get_row(row)));
     }
 }
 
