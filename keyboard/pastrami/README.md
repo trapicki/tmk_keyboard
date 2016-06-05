@@ -1,22 +1,25 @@
-pastrami - the simplest keyboard.
+pastrami - the simplest keyboard
 =================================
 copied from onekey for a starter.
 
-Currently for [Teensy][][++ 2.0][], showing NumLock and generating an "a" keycode at keypress.
+Currently for [Teensy][++ 2.0].
+Showing NumLock and generating keycodes at keypress for a single layer.
+Version 2 with 2x2 keys. Easy configurable for arbitrary key matrix sizes.
 
 The most basic keyboard example
 -------------------------------
 * Needs nothing more than a Teensy++ 2.0 (or similar).
 * Shows up as HID device when connected. This will work with every HID USB driver, every Operating System.
-* Will send a key code when a switch is connected and pressed, or at least the right pins are connected/shorted.
+* Will send a keys code when switches are connected and pressed.
 * Will show NumLock state.
 * Easy to modify for changes - ports and pins centrally defined.
 
-This example is specifically suitable as a demonstration and starting point of a DIY keyboard with a Teensy++ 2.0. Just flash the board and it will be a keyboard.
+This example is specifically suitable as a demonstration and starting point of a DIY keyboard with a Teensy++ 2.0. Just change the defines in 3 files, flash the board and you have your keyboard.
 
 Howto use
 ---------
-1. Get [teensy_loader][] and [hid_listen].
+1. Get [teensy_loader](teensy_loader) and [hid_listen](hid_listen).
+2. Edit [config.h] for `MATRIX_ROWS` and `MATRIX_COLS`. Edit [matrix.c] for your pin assignments, and edit [keymap.c] for your keycode assignment.
 2. Run `make -f Makefile.pjrc teensy`.
 3. Run `hid_listen` to see some debug info.
 4. Press NumLock on some other keyboard or press your key
@@ -27,21 +30,50 @@ Modify it to your taste!
 ------------------------
 The *Numlock* state is output to pin `D6`, which is connected to the on-board LED. If you want to use a different port, just change the defines at the beginning of [led.c].
 
-The *key* is read in [matrix.c]. The *row* pin is by default `F6`, the *column* pin is `F7`. if you look at the parts side with the USB connector on the left, these two pins are in the top row the two right most, just above the reset button.
+The *keys* are read in [matrix.c]. The *row* and *col* (column) pins are defined by `PORT_ROW_x`, `BIT_ROW_x`, `PORT_COL_x`, `BIT_COL_x`, where x are ascending numbers in decimal, starting with **0**.
 
-                                   row1  col1
-                                      |  |
-    /---------------------------------F6-F7-\
-    |                  ^                    |
-    |                 / \              Re   |
-    MINI             < µC>             set  |
-    USB               \ /     LED           |
-    |                  v     /              |
-    \--------------D6-------/-------------- /
-                    |      /
-                    NumLock
+The pin definitions must match the definitions of `MATRIX_ROWS` and `MATRIX_COLS` in [config.h]
 
-The *keycode* to be sent can be changed in [keymap.c].
+The default setting is F6/F7 for row0/row1 and F3/F4 for col0/col1.
+
+Look at the parts side with the USB connector on the bottom, these pins are in the top left, just above the reset button.
+
+                   +---------+
+       row1 --  F7 |         | C7
+       row0 --  F6 |   Reset | C6
+                F5 |         | C5
+       col1 --  F4 |         | C4
+       col0 --  F3 |     LED | C3
+                F2 |         | C2
+                F1 |    X    | C1
+                F0 |   / \   | C0
+              AREF |  /   \  | E1
+               GND | X µC  X | E0
+                E6 |  \   /  | D7
+                E7 |   \ /   | D6  LED/NumLock
+                B0 |    X    | D5
+                B1 |         | D4
+                B2 |         | D3
+                B3 |         | D2
+                B4 | +-----+ | D1
+                B5 | |     | | D1
+                B6 | |MINI | | B7
+               VCC | | USB | | GND
+                   +-+-----+-+
+
+The *keycodes* to be sent can be changed in [keymap.c].
+The default keymap is:
+
+       | c  c  
+       | 0  1
+    ---+------
+       |
+    r0 | a w
+       |
+    r1 | s d
+       |
+
+This is a somewhat rotated WASD cross, so you can already play your favourite game!
 
 To browse the code use your favorite IDE, or a source cross reference system. I prefer *GNU Global* (`htags`).
 
@@ -61,3 +93,4 @@ Share and enjoy!
 [led.c]:     led.c
 [matrix.c]:  matrix.c
 [keymap.c]:  keymap.c
+[config.h]:  config.h
