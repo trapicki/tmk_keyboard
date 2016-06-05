@@ -11,3 +11,8 @@ tags
 *~
 build/
 *.bak
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+HTML
