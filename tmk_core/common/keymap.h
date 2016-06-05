@@ -41,13 +41,15 @@ typedef union {
 #endif
 
 
+/* custom hook to enable fancy layer switching */
+
+void hook_keymap_event(keyevent_t event);
+
 /* translates key to keycode */
 uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key);
 
 /* translates Fn keycode to action */
 action_t keymap_fn_to_action(uint8_t keycode);
-
-
 
 #ifdef USE_LEGACY_KEYMAP
 /* 
