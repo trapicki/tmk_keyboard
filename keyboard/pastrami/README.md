@@ -4,7 +4,7 @@ copied from onekey for a starter.
 
 Currently for [Teensy][++ 2.0].
 Showing NumLock and generating keycodes at keypress for a single layer.
-Version 2 with 2x2 keys. Easy configurable for arbitrary key matrix sizes.
+Version 2 with 2x2 keys and layers. Easy configurable for arbitrary key matrix sizes.
 
 The most basic keyboard example
 -------------------------------
@@ -64,16 +64,21 @@ Look at the parts side with the USB connector on the bottom, these pins are in t
 The *keycodes* to be sent can be changed in [keymap.c].
 The default keymap is:
 
-       | c  c  
-       | 0  1
-    ---+------
-       |
-    r0 | a w
-       |
-    r1 | s d
-       |
+    Layer 0       Layer 1
+    Keys/WASD     Cursor movement
+       |             |
+       | 0  1        | 0 1
+    ---+------    ---+------
+       |             |
+    r0 | a w      r0 | ← ↑
+       |             |
+    r1 | s d      r1 | ↓ →
+       |             |
 
-This is a somewhat rotated WASD cross, so you can already play your favourite game!
+* Layer 0 is a somewhat rotated WASD cross, so you can already play your favourite game!
+* Layer 1 gives you the cursor movement key, so you can play your favourite game now even with the right hand.
+
+To switch layers, press (all) four keys.
 
 To browse the code use your favorite IDE, or a source cross reference system. I prefer *GNU Global* (`htags`).
 

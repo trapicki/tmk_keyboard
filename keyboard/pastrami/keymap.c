@@ -28,8 +28,12 @@
 
 
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    {{KC_A, KC_W},
-     {KC_S, KC_D}},
+    // layer 0: WASD
+    {{KC_A,    KC_W},
+     {KC_S,    KC_D}},
+    // layer 1: cursor keys
+    {{KC_LEFT, KC_UP},
+     {KC_DOWN, KC_RIGHT}},
 };
 
 /*
@@ -38,6 +42,16 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 static const uint16_t PROGMEM fn_actions[] = {
 };
 
+void hook_keymap_event(keyevent_t key) {
+    // check pressed, because we get an event for both pressed an release
+    if (matrix_key_count() == 4 && key.pressed) {
+        // switch layer to cursor keys
+        default_layer_xor((uint32_t)1<<1);
+        xprintf("%s: switching layer. New State: ", __FUNCTION__);
+        default_layer_debug();
+        xprintf("\n");
+    }
+}
 
 
 #define KEYMAPS_SIZE    (sizeof(keymaps) / sizeof(keymaps[0]))
