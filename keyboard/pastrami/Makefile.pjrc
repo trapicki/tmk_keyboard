@@ -92,6 +92,7 @@ CONSOLE_ENABLE = yes    # Console for debug
 #PS2_USE_INT = yes      # uses external interrupt for falling edge of PS/2 clock pin
 #PS2_USE_USART = yes     # uses hardware USART engine for PS/2 signal receive(recomened)
 
+EXTRAFLAGS += -DDEBUG -DDEBUG_ACTION
 
 # Search Path
 VPATH += $(TARGET_DIR)
