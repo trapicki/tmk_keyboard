@@ -40,7 +40,7 @@ Look at the parts side with the USB connector on the bottom, these pins are in t
 
                    +---------+
        row1 --  F7 |         | C7
-       row0 --  F6 |   Reset | C6
+       row0 --  F6 |  Reset  | C6
                 F5 |         | C5
        col1 --  F4 |         | C4
        col0 --  F3 |     LED | C3

@@ -33,49 +33,49 @@
 #endif
 
 /// comment/uncomment according to number of MATRIX_ROWS and MATRIX_COLS in config.h
-#define PORT_COL_0 F
-#define BIT_COL_0 3
-#define PORT_COL_1 F
-#define BIT_COL_1 4
-//#define PORT_COL_2 F
-//#define BIT_COL_2 4
-//#define PORT_COL_3 F
-//#define BIT_COL_3 4
-//#define PORT_COL_4 F
-//#define BIT_COL_4 4
-//#define PORT_COL_5 F
-//#define BIT_COL_5 4
-//#define PORT_COL_6 F
-//#define BIT_COL_6 4
-//#define PORT_COL_7 F
-//#define BIT_COL_7 4
-//#define PORT_COL_8 F
-//#define BIT_COL_8 4
-//#define PORT_COL_9 F
-//#define BIT_COL_9 4
-//#define PORT_COL_10 F
-//#define BIT_COL_10 4
-//#define PORT_COL_11 F
-//#define BIT_COL_11 4
-//#define PORT_COL_12 F
-//#define BIT_COL_12 4
-//#define PORT_COL_13 F
-//#define BIT_COL_13 4
-//#define PORT_COL_14 F
-//#define BIT_COL_14 4
-//#define PORT_COL_15 F
-//#define BIT_COL_15 4
+#define PORT_COL_0 C
+#define BIT_COL_0 0
+#define PORT_COL_1 C
+#define BIT_COL_1 1
+#define PORT_COL_2 C
+#define BIT_COL_2 2
+#define PORT_COL_3 C
+#define BIT_COL_3 3
+#define PORT_COL_4 C
+#define BIT_COL_4 4
+#define PORT_COL_5 C
+#define BIT_COL_5 5
+#define PORT_COL_6 C
+#define BIT_COL_6 6
+#define PORT_COL_7 C
+#define BIT_COL_7 7
+#define PORT_COL_8 F
+#define BIT_COL_8 7
+#define PORT_COL_9 F
+#define BIT_COL_9 6
+#define PORT_COL_10 F
+#define BIT_COL_10 5
+#define PORT_COL_11 F
+#define BIT_COL_11 4
+#define PORT_COL_12 F
+#define BIT_COL_12 3
+#define PORT_COL_13 F
+#define BIT_COL_13 2
+#define PORT_COL_14 F
+#define BIT_COL_14 1
+#define PORT_COL_15 F
+#define BIT_COL_15 0
 
-#define PORT_ROW_0 F
-#define BIT_ROW_0 6
-#define PORT_ROW_1 F
-#define BIT_ROW_1 7
-//#define PORT_ROW_2 F
-//#define BIT_ROW_2 7
-//#define PORT_ROW_3 F
-//#define BIT_ROW_3 7
-//#define PORT_ROW_4 F
-//#define BIT_ROW_4 7
+#define PORT_ROW_0 B
+#define BIT_ROW_0 0
+#define PORT_ROW_1 B
+#define BIT_ROW_1 1
+#define PORT_ROW_2 B
+#define BIT_ROW_2 2
+#define PORT_ROW_3 B
+#define BIT_ROW_3 3
+#define PORT_ROW_4 B
+#define BIT_ROW_4 4
 //#define PORT_ROW_5 F
 //#define BIT_ROW_5 7
 //#define PORT_ROW_6 F
@@ -208,7 +208,6 @@ static void  init_cols(void)
     /// comment/uncomment according to number of MATRIX_ROWS and MATRIX_COLS in config.h
     INIT_COL(0);
     INIT_COL(1);
-    /*
     INIT_COL(2);
     INIT_COL(3);
     INIT_COL(4);
@@ -223,7 +222,6 @@ static void  init_cols(void)
     INIT_COL(13);
     INIT_COL(14);
     INIT_COL(15);
-    */
     ///
 #undef INITCOL
 }
@@ -236,7 +234,6 @@ static matrix_row_t read_cols(void)
             /// comment/uncomment according to number of MATRIX_ROWS and MATRIX_COLS in config.h
             ADD_COL(0)
           | ADD_COL(1)
-            /*
           | ADD_COL(2)
           | ADD_COL(3)
           | ADD_COL(4)
@@ -251,8 +248,7 @@ static matrix_row_t read_cols(void)
           | ADD_COL(13)
           | ADD_COL(14)
           | ADD_COL(15)
-            */
-            ///
+          ///
      );
 #undef ADD_COL
 }
@@ -265,10 +261,10 @@ static void unselect_rows(void)
     /// comment/uncomment according to number of MATRIX_ROWS and MATRIX_COLS in config.h
     UNSELECT_ROW(0);
     UNSELECT_ROW(1);
-    /*
     UNSELECT_ROW(2);
     UNSELECT_ROW(3);
     UNSELECT_ROW(4);
+    /*
     UNSELECT_ROW(5);
     UNSELECT_ROW(6);
     UNSELECT_ROW(7);
@@ -288,10 +284,10 @@ static void select_row(uint8_t row)
         /// comment/uncomment according to number of MATRIX_ROWS and MATRIX_COLS in config.h
         ADD_CASE(0);
         ADD_CASE(1);
-        /*
         ADD_CASE(2);
         ADD_CASE(3);
         ADD_CASE(4);
+        /*
         ADD_CASE(5);
         ADD_CASE(6);
         ADD_CASE(7);
