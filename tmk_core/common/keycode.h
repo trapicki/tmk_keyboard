@@ -276,7 +276,7 @@ enum hid_keyboard_keypad_usage {
     KC_KP_0,
     KC_KP_DOT,
     KC_NONUS_BSLASH,    /* Non-US \ and | (Typically near the Left-Shift key) */
-    KC_APPLICATION,
+    KC_APPLICATION,     /* Win95 menu key */
     KC_POWER,
     KC_KP_EQUAL,
     KC_F13,
@@ -293,7 +293,7 @@ enum hid_keyboard_keypad_usage {
     KC_F24,
     KC_EXECUTE,
     KC_HELP,
-    KC_MENU,
+    KC_MENU,            /* NOT Win95 menu key, use KC_APPLICATION instead! */
     KC_SELECT,
     KC_STOP,
     KC_AGAIN,
